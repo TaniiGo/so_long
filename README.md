@@ -6,7 +6,9 @@
 ## How to play
 ```
 git clone https://github.com/TaniiGo/so_long.git so_long
-cd so_long
+cd so_long/mlx
+make
+cd ..
 make
 ./so_long map/map.ber
 ```
