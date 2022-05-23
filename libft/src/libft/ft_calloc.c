@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keitanig <keitanig@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/06 21:48:11 by keitanig          #+#    #+#             */
-/*   Updated: 2022/04/12 16:07:49 by keitanig         ###   ########.fr       */
+/*   Created: 2022/01/07 17:37:11 by keigo             #+#    #+#             */
+/*   Updated: 2022/05/23 16:44:19 by keitanig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <limits.h>
-# include "libft.h"
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
 
-int	ft_printf(const char *format, ...);
-int	parse_converting_specifier(const char format, va_list arg);
-int	print_c(va_list arg);
-int	print_s(va_list arg);
-int	print_di(va_list arg);
-int	print_p(va_list arg);
-int	print_x(va_list arg, char c);
-int	print_u(va_list arg);
-
-#endif
+	if (!count || !size)
+	{
+		count = 1;
+		size = 1;
+	}
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
+}

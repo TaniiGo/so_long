@@ -6,22 +6,39 @@
 #    By: keitanig <keitanig@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/21 12:41:00 by keitanig          #+#    #+#              #
-#    Updated: 2022/05/21 19:43:43 by keitanig         ###   ########.fr        #
+#    Updated: 2022/05/23 16:59:12 by keitanig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	so_long
+NAME = so_long
 
-SRC	=	src/main.c src/map.c src/render.c src/move.c \
-		src/move_utils.c src/error.c src/free.c
+SRC	= main.c map.c render.c move.c \
+	move_utils.c error.c free.c
 
-OBJ	=	$(SRC:.c=.o)
+SRC_DIR = src/
 
-CC	=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+SRCS = $(addprefix $(SRC_DIR), $(SRC))
+
+OBJ	= $(SRCS:.c=.o)
+
+CC = cc
+RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c
 	$(CC) -Imlx -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

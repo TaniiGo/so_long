@@ -1,5 +1,6 @@
-test/*
+test/
 so_long
-mlx/*
-minilibx-linux/*
-practice/*
+mlx/
+minilibx-linux/
+practice/
+.vscode/

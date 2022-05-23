@@ -6,11 +6,11 @@
 #    By: keitanig <keitanig@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 18:35:55 by keigo             #+#    #+#              #
-#    Updated: 2022/05/03 15:30:14 by keitanig         ###   ########.fr        #
+#    Updated: 2022/05/23 16:46:12 by keitanig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
+LIBFT_SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
 		ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
 		ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
 		ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c \
@@ -20,21 +20,26 @@ SRCS		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
 		ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
 		ft_tolower.c ft_toupper.c \
 		ft_straddc.c ft_straddc_first.c \
-		ft_printf.c parse.c print_c.c print_di.c print_p.c \
-		print_s.c print_u.c print_x.c \
-		get_next_line.c
-
-OBJS		=	$(SRCS:.c=.o)
-
-BONUS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
+		ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 		ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 		ft_lstmap.c ft_lstnew.c ft_lstsize.c
+	
+PRF_SRCS = ft_printf.c parse.c print_c.c print_di.c print_p.c \
+		print_s.c print_u.c print_x.c
+		
+GNL_SRCS = get_next_line.c
 
-BONUS_OBJS	=	$(BONUS:.c=.o)
+LIBFT_DIR = src/libft/
+PRF_DIR = src/printf/
+GNL_DIR = src/get_next_line/
 
-ifdef WITH_BONUS
-OBJS += $(BONUS_OBJS)
-endif
+ALL_SRCS = $(addprefix $(LIBFT_DIR), $(LIBFT_SRCS)) \
+		$(addprefix $(PRF_DIR), $(PRF_SRCS)) \
+		$(addprefix $(GNL_DIR), $(GNL_SRCS))
+
+OBJS		=	$(ALL_SRCS:.c=.o)
+
+INCS		=	-I./inc
 
 NAME		=	libft.a
 
@@ -45,7 +50,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $^
+	$(CC) -c $(CFLAGS) $(INCS) -o $@ $^
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -56,9 +61,9 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-bonus:
-	@make WITH_BONUS=1
+# bonus:
+# 	@make WITH_BONUS=1
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

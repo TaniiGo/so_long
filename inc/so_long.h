@@ -6,7 +6,7 @@
 /*   By: keitanig <keitanig@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:50:52 by keitanig          #+#    #+#             */
-/*   Updated: 2022/05/21 19:57:43 by keitanig         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:52:19 by keitanig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdbool.h>
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 # include "../mlx/mlx.h"
 
 typedef struct	s_player {

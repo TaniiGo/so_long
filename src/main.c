@@ -6,13 +6,12 @@
 /*   By: keitanig <keitanig@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:43:58 by keitanig          #+#    #+#             */
-/*   Updated: 2022/05/21 19:58:00 by keitanig         ###   ########.fr       */
+/*   Updated: 2022/05/23 16:53:40 by keitanig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../inc/so_long.h"
-#include "../libft/libft.h"
 #include <stdio.h>
 #include <stdbool.h>
 
